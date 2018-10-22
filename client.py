@@ -3,7 +3,7 @@
 """
 Programa cliente UDP que abre un socket a un servidor
 """
-
+#esqueleto
 import socket
 
 # Constantes. Dirección IP del servidor y contenido a enviar
