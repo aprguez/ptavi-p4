@@ -13,10 +13,8 @@ Constantes. Dirección IP del servidor y contenido a enviar
 
 #Direccion IP
 SERVER = 'localhost'
-IP = sys.argv[1]
 PORT = int(sys.argv[2])
-
-        
+IP = sys.argv[1]
 
 #Contenido a enviar    
 LINE = sys.argv[3]
@@ -26,8 +24,7 @@ LINE = sys.argv[3]
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 my_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 my_socket.connect((SERVER, PORT))
-    
-    
+ 
 print("Enviando: " + LINE)
 my_socket.send(bytes(LINE, 'utf-8') + b'\r\n')
 data = my_socket.recv(1024)
