@@ -12,12 +12,11 @@ Constantes. Dirección IP del servidor y contenido a enviar
 """
 
 #Direccion IP
-SERVER = 'localhost'
+SERVER = sys.argv[1]
 PORT = int(sys.argv[2])
-IP = sys.argv[1]
-
-#Contenido a enviar    
-LINE = sys.argv[3]
+PETICIONES = sys.argv[3]
+DIRECCIONSIP = sys.argv[4]
+EXPIRES = sys.argv[5]
 
 # Creamos el socket, lo configuramos y lo atamos a un servidor/puerto
     
@@ -25,9 +24,9 @@ my_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 my_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 my_socket.connect((SERVER, PORT))
  
-print("Enviando: " + LINE)
-my_socket.send(bytes(LINE, 'utf-8') + b'\r\n')
-data = my_socket.recv(1024)
+print("Enviando: " + PETICIONES + " sip: " + DIRECCIONSIP + '\r\n' + "Expires: " + EXPIRES)
+my_socket.send(PETICIONES + " sip: " + DIRECCIONSIP  + " SIP/1.0 " + '\r\n' + "Expires: " + EXPIRES + '\r\n\r\n')
+data = my_socket.recv(1024) #tamaño del buffer
         
 print('Recibido -- ', data.decode('utf-8'))
 print("Terminando socket. . .")
